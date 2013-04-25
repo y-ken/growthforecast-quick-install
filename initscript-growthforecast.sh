@@ -69,7 +69,7 @@ status() {
   if [ -z "$PID" ]; then
     echo "growthforecast stopped."
   else
-    echo "growthforecast already running."
+    echo "growthforecast running."
   fi
 }
 
