@@ -15,6 +15,12 @@ curl -fsSkL https://raw.github.com/y-ken/growthforecast-quick-install/master/set
 
 TODO
 
+## Blog
+
+* GrowthForecastをinit.dを用いて自動起動する方法  
+http://y-ken.hatenablog.com/entry/growthforecast-init.d-script
+
+
 ## Copyright
 
 Copyright © 2013- Kentaro Yoshida (@yoshi_ken)
