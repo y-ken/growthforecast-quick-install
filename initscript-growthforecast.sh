@@ -5,18 +5,19 @@
 # Source function library.
 . /etc/rc.d/init.d/functions
 
-### perlbrew
-export PERLBREW_ROOT=/usr/local/growthforecast
-source $PERLBREW_ROOT/etc/bashrc
-
 ### Default variables
 USER="gf"
 HOST="0.0.0.0"
 PORT="5125"
 FRONT_PROXY="0.0.0.0"
 OPTIONS=""
+PERLBREW_ROOT="/usr/local/growthforecast"
 LOG_FILE="/var/log/growthforecast.log"
 SYSCONFIG="/etc/sysconfig/growthforecast"
+
+### Load Perlbrew
+export PERLBREW_ROOT
+source $PERLBREW_ROOT/etc/bashrc
 
 PROG_NAME="growthforecast.pl"
 PROG_ARGS="--port $PORT --host $HOST --front-proxy $FRONT_PROXY $OPTIONS"
