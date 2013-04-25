@@ -74,7 +74,7 @@ status() {
 }
 
 usage() {
-  echo "Usage: `basename $0` {start|stop|restart}"
+  echo "Usage: `basename $0` {start|stop|restart|status}"
 }
 
 case $1 in
