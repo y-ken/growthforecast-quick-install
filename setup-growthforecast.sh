@@ -6,11 +6,32 @@
 USER=gf
 GROUP=$USER
 SETUP_DIR=/usr/local/growthforecast
+declare -x SETUP_DIR
 
 if [ -d $SETUP_DIR ]; then
   echo "GrowthForecast has already installed."
   exit 1
 fi
+
+install_perlbrew() {
+  PERLBREW_ROOT=$SETUP_DIR
+  export PERLBREW_ROOT
+
+  curl -fsSkL http://install.perlbrew.pl | bash
+  source $PERLBREW_ROOT/etc/bashrc
+  perlbrew install 5.16.3
+  perlbrew switch perl-5.16.3
+
+  echo "Installing Perlbrew..."
+  perlbrew install-cpanm
+
+  echo "Installing GrowthForecast."
+  cd $SETUP_DIR
+  cpanm RJBS/Test-Fatal-0.010.tar.gz # to avoid failing at `cpanm --installdeps .`
+  git clone https://github.com/kazeburo/GrowthForecast.git GrowthForecast
+  cd GrowthForecast
+  cpanm --installdeps .
+}
 
 echo "Installing RRDTool Dependencies and Fonts."
 yum -y install pkgconfig glib2-devel gettext libxml2-devel pango-devel cairo-devel
@@ -21,25 +42,10 @@ mkdir $SETUP_DIR
 groupadd $GROUP
 useradd -M -g $GROUP -d $SETUP_DIR $USER
 chown -R $USER:$GROUP $SETUP_DIR
-su $USER
-PERLBREW_ROOT=$SETUP_DIR
-export PERLBREW_ROOT
 
 echo "Installing Perlbrew."
-curl -fsSkL http://install.perlbrew.pl | bash
-source $PERLBREW_ROOT/etc/bashrc
-perlbrew install 5.16.3
-perlbrew switch perl-5.16.3
-
-echo "Installing Perlbrew..."
-perlbrew install-cpanm
-
-echo "Installing GrowthForecast."
-cd $SETUP_DIR
-cpanm RJBS/Test-Fatal-0.010.tar.gz # to avoid failing at `cpanm --installdeps .`
-git clone https://github.com/kazeburo/GrowthForecast.git GrowthForecast
-cd GrowthForecast
-cpanm --installdeps .
+export -f install_perlbrew
+su $USER -c "bash -c install_perlbrew"
 touch /var/log/growthforecast.log
 chown $USER:$GROUP /var/log/growthforecast.log
 chmod 644 /var/log/growthforecast.log
