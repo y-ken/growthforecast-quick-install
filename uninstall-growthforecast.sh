@@ -14,6 +14,12 @@ if [ ! -d $SETUP_DIR ]; then
 fi
 
 if [ -f $SETUP_DIR/init ]; then
+
+if [ `ps ax | fgrep -c growthforecast.pl` -ge 1 ]; then
+  /etc/init.d/growthforecast stop
+fi
+
+if [ -f $SETUP_DIR/bin/perlbrew ]; then
   rm -rf $SETUP_DIR
 fi
 
