@@ -16,7 +16,7 @@ if [ ! -d $SETUP_DIR ]; then
   exit 1
 fi
 
-read -p "Are you sure to uninstall growthforecast? "
+read -p "Are you sure to un-install growthforecast? (y/n)"
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
   exit 1
 fi
