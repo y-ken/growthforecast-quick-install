@@ -1,6 +1,8 @@
 growthforecast-quick-install
 ============================
 
+# NOTE: Setup script is alpha version so it won't work yet.
+
 ## What's this?
 
 It is a repository to install GrowthForecast with one step!
