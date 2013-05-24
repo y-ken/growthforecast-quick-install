@@ -3,9 +3,12 @@
 # Usage
 # https://github.com/y-ken/growthforecast-quick-install
 
+### Default variables
 USER=gf
 GROUP=$USER
-SETUP_DIR=/usr/local/growthforecast
+
+source /etc/sysconfig/growthforecast
+SETUP_DIR=$PERLBREW_ROOT
 declare -x SETUP_DIR
 
 if [ ! -d $SETUP_DIR ]; then
@@ -13,7 +16,10 @@ if [ ! -d $SETUP_DIR ]; then
   exit 1
 fi
 
-if [ -f $SETUP_DIR/init ]; then
+read -p "Are you sure to uninstall growthforecast? "
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+  exit 1
+fi
 
 if [ `ps ax | fgrep -c growthforecast.pl` -ge 1 ]; then
   /etc/init.d/growthforecast stop
