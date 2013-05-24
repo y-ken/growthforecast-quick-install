@@ -1,17 +1,24 @@
 growthforecast-quick-install
 ============================
 
-# NOTE: Setup script is alpha version so it won't work yet.
-
 ## What's this?
 
 It is a repository to install GrowthForecast with one step!
 
 ## Usage
 
+#### Install
+
 Run this script as root user.
 ```bash
 # curl -fsSkL https://raw.github.com/y-ken/growthforecast-quick-install/master/setup-growthforecast.sh | bash
+```
+
+#### Uninstall
+
+Run this script as root user.
+```bash
+# curl -fsSkL https://raw.github.com/y-ken/growthforecast-quick-install/master/uninstall-growthforecast.sh | bash
 ```
 
 ## Feature
@@ -26,7 +33,7 @@ http://y-ken.hatenablog.com/entry/growthforecast-init.d-script
 
 ## Copyright
 
-Copyright © 2013- Kentaro Yoshida (@yoshi_ken)
+Copyright © 2013- Kentaro Yoshida ([@yoshi_ken](https://twitter.com/yoshi_ken))
 
 ## License
 
