@@ -16,6 +16,11 @@ if [ -d $SETUP_DIR ]; then
   exit 1
 fi
 
+read -p "Are you sure to install growthforecast? (y/n)"
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+  exit 1
+fi
+
 install_perlbrew() {
   curl -fsSkL http://install.perlbrew.pl | bash
   source $PERLBREW_ROOT/etc/bashrc
