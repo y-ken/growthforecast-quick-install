@@ -57,6 +57,7 @@ if [ ! -f /etc/sysconfig/growthforecast ]; then
 fi
 
 echo "Installing GrowthForecast init.d script."
+mkdir /var/run/growthforecast/
 curl -fsSkL -o /etc/init.d/growthforecast \
   https://raw.github.com/y-ken/growthforecast-quick-install/master/initscript-growthforecast.sh
 chmod +x /etc/init.d/growthforecast
