@@ -7,6 +7,9 @@ USER=gf
 GROUP=$USER
 SETUP_DIR=/usr/local/growthforecast
 declare -x SETUP_DIR
+PERLBREW_ROOT=$SETUP_DIR
+export PERLBREW_ROOT
+declare -x PERLBREW_ROOT
 
 if [ -d $SETUP_DIR ]; then
   echo "GrowthForecast has already installed."
@@ -14,20 +17,17 @@ if [ -d $SETUP_DIR ]; then
 fi
 
 install_perlbrew() {
-  PERLBREW_ROOT=$SETUP_DIR
-  export PERLBREW_ROOT
-
   curl -fsSkL http://install.perlbrew.pl | bash
   source $PERLBREW_ROOT/etc/bashrc
   perlbrew install 5.16.3
   perlbrew switch perl-5.16.3
-
-  echo "Installing Perlbrew..."
   perlbrew install-cpanm
+}
 
-  echo "Installing GrowthForecast."
+install_growthforecast() {
+  source $PERLBREW_ROOT/etc/bashrc
   cd $SETUP_DIR
-  cpanm RJBS/Test-Fatal-0.010.tar.gz # to avoid failing at `cpanm --installdeps .`
+  cpanm RJBS/Test-Fatal-0.010.tar.gz # to avoid testing failed at `cpanm --installdeps .`
   git clone https://github.com/kazeburo/GrowthForecast.git GrowthForecast
   cd GrowthForecast
   cpanm --installdeps .
@@ -46,6 +46,10 @@ chown -R $USER:$GROUP $SETUP_DIR
 echo "Installing Perlbrew."
 export -f install_perlbrew
 su $USER -c "bash -c install_perlbrew"
+
+echo "Installing GrowthForecast."
+export -f install_growthforecast
+su $USER -c "bash -c install_growthforecast"
 touch /var/log/growthforecast.log
 chown $USER:$GROUP /var/log/growthforecast.log
 chmod 644 /var/log/growthforecast.log

@@ -16,10 +16,8 @@ PERLBREW_HOME=$PERLBREW_ROOT/.perlbrew
 LOG_FILE="/var/log/growthforecast.log"
 SYSCONFIG="/etc/sysconfig/growthforecast"
 
-### Load Perlbrew
-export PERLBREW_ROOT
+source $SYSCONFIG
 source $PERLBREW_ROOT/etc/bashrc
-
 PROG_NAME="growthforecast.pl"
 PROG_ARGS="--port $PORT --host $HOST --front-proxy $FRONT_PROXY $OPTIONS"
 PID_FILE=/var/run/growthforecast/growthforecast.pid
