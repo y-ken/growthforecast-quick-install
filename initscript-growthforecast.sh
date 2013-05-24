@@ -12,6 +12,7 @@ PORT="5125"
 FRONT_PROXY="0.0.0.0"
 OPTIONS=""
 PERLBREW_ROOT="/usr/local/growthforecast"
+PERLBREW_HOME=$PERLBREW_ROOT/.perlbrew
 LOG_FILE="/var/log/growthforecast.log"
 SYSCONFIG="/etc/sysconfig/growthforecast"
 
