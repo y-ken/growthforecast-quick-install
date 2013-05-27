@@ -18,6 +18,7 @@ SYSCONFIG="/etc/sysconfig/growthforecast"
 
 source $SYSCONFIG
 source $PERLBREW_ROOT/etc/bashrc
+OPTIONS=`echo $OPTIONS`
 PROG_NAME="growthforecast.pl"
 PROG_ARGS="--port $PORT --host $HOST --front-proxy $FRONT_PROXY $OPTIONS"
 PID_FILE=/var/run/growthforecast/growthforecast.pid
