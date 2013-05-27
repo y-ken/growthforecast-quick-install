@@ -23,6 +23,11 @@ PROG_NAME="growthforecast.pl"
 PROG_ARGS="--port $PORT --host $HOST --front-proxy $FRONT_PROXY $OPTIONS"
 PID_FILE=/var/run/growthforecast/growthforecast.pid
 
+if [ -n "$MYSQL_USER" ]; then
+  declare -x MYSQL_USER
+  declare -x MYSQL_PASSWORD
+fi
+
 start() {
   PID=`pgrep -fo "$PROG_NAME"`
   if [ -z "$PID" ]; then

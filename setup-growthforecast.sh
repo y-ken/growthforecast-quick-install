@@ -32,10 +32,15 @@ install_perlbrew() {
 install_growthforecast() {
   source $PERLBREW_ROOT/etc/bashrc
   cd $SETUP_DIR
-  cpanm RJBS/Test-Fatal-0.010.tar.gz # to avoid testing failed at `cpanm --installdeps .`
   git clone https://github.com/kazeburo/GrowthForecast.git GrowthForecast
   cd GrowthForecast
+  cpanm RJBS/Test-Fatal-0.010.tar.gz # to avoid testing failed at `cpanm --installdeps .`
   cpanm --installdeps .
+}
+
+install_cpan_mysql() {
+  source $PERLBREW_ROOT/etc/bashrc
+  cpanm DBD::mysql
 }
 
 echo "Installing RRDTool Dependencies and Fonts."
@@ -58,6 +63,12 @@ su $USER -c "bash -c install_growthforecast"
 touch /var/log/growthforecast.log
 chown $USER:$GROUP /var/log/growthforecast.log
 chmod 644 /var/log/growthforecast.log
+
+if [ -f `which mysql_config` ]; then
+  echo "Installing DBD::mysql"
+  export -f install_cpan_mysql
+  su $USER -c "bash -c install_cpan_mysql"
+fi
 
 echo "Installing GrowthForecast config."
 if [ ! -f /etc/sysconfig/growthforecast ]; then
