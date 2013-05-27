@@ -8,7 +8,7 @@ It is a repository to install GrowthForecast with one step!
 ## Feature
 
 * everything file puts into /usr/local/growthforecast/
-* works with perlbrew, not using system installed perl.
+* works with perlbrew, not using system installed perl nor cpan library.
 * launch growthforecast as normaluser, not root.
 * supports init.d script. you can autostart with chkconfig.
 
