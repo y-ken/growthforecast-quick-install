@@ -32,7 +32,7 @@ start() {
     exit 1
   fi
   echo -n "Starting growthforecast: "
-  su $USER -c "perl $PERLBREW_ROOT/GrowthForecast/$PROG_NAME $GF_ARGS >>$LOG_FILE 2>&1 &"
+  su $USER -c "perl $PERLBREW_ROOT/GrowthForecast/$PROG_NAME $PROG_ARGS >>$LOG_FILE 2>&1 &"
   RETVAL=$?
   echo `pgrep -o -f 'growthforecast.pl'` > $PID_FILE
   if [ $RETVAL -eq 0 ] ; then
