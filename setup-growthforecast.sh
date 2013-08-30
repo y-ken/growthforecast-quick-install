@@ -81,12 +81,12 @@ if [ ! -f /etc/sysconfig/growthforecast ]; then
     https://raw.github.com/y-ken/growthforecast-quick-install/master/growthforecast.conf
 fi
 
-echo "Installing GrowthForecast init.d script."
+echo "Installing GrowthForecast init.d script at /etc/init.d/growthforecast."
 mkdir /var/run/growthforecast/
 curl -fsSkL -o /etc/init.d/growthforecast \
   https://raw.github.com/y-ken/growthforecast-quick-install/master/initscript-growthforecast.sh
 chmod +x /etc/init.d/growthforecast
 chkconfig growthforecast on
 
-echo "Install finished."
-echo "Congratulations!"
+echo "Congratulations! Install finished."
+echo "Now you can configure settings at /etc/sysconfig/growthforecast"
