@@ -21,6 +21,11 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
   exit 1
 fi
 
+if [[ ! `whoami` = "root" ]]; then
+  echo "You must run this script on root user."
+  exit 1
+fi
+
 install_perlbrew() {
   curl -fsSkL http://install.perlbrew.pl | bash
   source $PERLBREW_ROOT/etc/bashrc
