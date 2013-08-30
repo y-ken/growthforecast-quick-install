@@ -21,6 +21,11 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
   exit 1
 fi
 
+if [[ ! `whoami` = "root" ]]; then
+  echo "You must run this script on root user."
+  exit 1
+fi
+
 if [ `ps ax | fgrep -c growthforecast.pl` -ge 1 ]; then
   /etc/init.d/growthforecast stop
 fi
